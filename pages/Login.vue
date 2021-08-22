@@ -58,7 +58,7 @@ export default defineComponent({
       }
     },
     goToMainApp () {
-
+      window.location.href = '/mainApp';
     }
   },
   components: {topbar},

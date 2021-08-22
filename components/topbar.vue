@@ -1,9 +1,9 @@
 <template>
     <div class="topbar">
-        <a href="" class="align-left">
+        <a href="#news" class="align-left">
             <font-awesome-icon :icon="['fas', 'bars']"/>
         </a>
-        <a href="" class="align-right">
+        <a href="#about" class="align-right">
             <font-awesome-icon :icon="['fas', 'user']"/>
         </a>
     </div>
