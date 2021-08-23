@@ -3,26 +3,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import LoginVue from './Login.vue';
-import mainAppVue from './mainApp.vue';
-
-Vue.use(VueRouter);
-
-const router = new VueRouter({
-  mode: 'history',
-  base: __dirname,
-  routes: [
-    { path: '/', component: LoginVue },
-    { path: '/login', component: LoginVue },
-    { path: '/main-app', component: mainAppVue }
-  ]
-});
+import Vue from 'Vue'
+import {store} from '~/store';
 
 new Vue({
-  router
-}).$mount('#app');
+  el: '#app',
+  store
+});
 
-export default Vue.extend({})
 </script>

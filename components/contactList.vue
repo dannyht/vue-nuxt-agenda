@@ -24,62 +24,42 @@
 </template>
 
 <script>
-import _ from 'lodash';
 
 export default {
   name: "contactList",
   data() {
     return {
-      search: '',
-      contacts: [
-        {
-          name: 'Al Pacino',
-          phone: '0123456783',
-          group: 'Friends'
-        },
-        {
-          name: 'Antony Hopkins',
-          phone: '0123456782',
-          group: 'Friends'
-        },
-        {
-          name: 'Brad Pitt',
-          phone: '0123456781',
-          group: 'Friends'
-        },
-        {
-          name: 'Tommy Lee Jones',
-          phone: '0123456780',
-          group: 'Friends'
-        }
-      ]
+      search: ''
     }
   },
   computed: {
     grouped() {
-      return _.groupBy(this.contacts, (item) => {
-        return item.name.charAt(0);
-      })
+      return this.$store.getters.grouped;
     },
     filteredContacts() {
-      return this.contacts.filter(item => {
+      return this.$store.getters.contacts.filter(item => {
         return item.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1;
       })
+    },
+    contacts() {
+      return this.$store.getters.contacts;
+    }
+  },
+  watch: {
+    contacts(newValue) {
+      this.$nextTick(function () {
+        this.$root.$emit('contactSelection', newValue[0]);
+      });
     }
   },
   methods: {
     selectContact(contact) {
       this.$root.$emit('contactSelection', contact);
-    },
+    }
   },
   mounted() {
-    this.$nextTick(function () {
-      this.$root.$emit('contactSelection', this.contacts[0]);
-    });
     this.$root.$on('addEditContact', data => {
-      this.contactDetails.name = data.name;
-      this.contactDetails.phone = data.phone;
-      this.contactDetails.group = data.group;
+      console.log('data: ', data);
     });
   }
 }

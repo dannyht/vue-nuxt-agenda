@@ -30,8 +30,11 @@
 </template>
 
 <script>
+import topbar from "../components/topbar";
+
 export default {
   name: "contactForm",
+  components: {topbar},
   data() {
     return {
       contact: {
